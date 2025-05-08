@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Code Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .generator-card {
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            background: #fff;
+            padding: 32px 24px 24px 24px;
+        }
+        .result-box {
+            background: #f1f3f4;
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 18px;
+            font-size: 1.15rem;
+            min-height: 48px;
+            color: #222;
+            white-space: pre-wrap;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .help-text {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        .register-info {
+            background: #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="generator-card">
+        <h2 class="mb-4 text-center">Machine Code Generator</h2>
+        
+        <div class="register-info">
+            <h5>Available Registers:</h5>
+            <p class="mb-0">R0, R1, R2, R3, R4, R5, R6, R7</p>
+        </div>
+
+        <div class="mb-3">
+            <label for="tac" class="form-label">Enter Three Address Code:</label>
+            <textarea id="tac" class="form-control" rows="6" placeholder="Enter your three address code here...&#10;Example:&#10;t1 = a + b&#10;t2 = t1 * c&#10;result = t2"></textarea>
+            <div class="help-text">
+                Each line should be in the format: result = operand1 operator operand2<br>
+                Supported operators: +, -, *, /<br>
+                Variables should be alphanumeric (a-z, A-Z, 0-9, _)
+            </div>
+        </div>
+
+        <button class="btn btn-primary w-100" onclick="generateMachineCode()">Generate Machine Code</button>
+        
+        <div class="result-box mt-4" id="machine-code-output">
+            <span class="text-muted">Machine code will appear here.</span>
+        </div>
+    </div>
+
+    <script>
+        function generateMachineCode() {
+            const tac = document.getElementById('tac').value.trim();
+            const outputDiv = document.getElementById('machine-code-output');
+            
+            if (!tac) {
+                outputDiv.innerHTML = '<span class="text-danger">Please enter three address code.</span>';
+                return;
+            }
+            
+            outputDiv.innerHTML = '<span class="text-muted">Generating machine code...</span>';
+            
+            fetch('/generate_machine_code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tac })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    outputDiv.innerHTML = `
+                        <strong>Generated Machine Code:</strong><br>
+                        <code>${data.result}</code>
+                    `;
+                } else {
+                    outputDiv.innerHTML = `
+                        <span class="text-danger">
+                            <strong>Error:</strong><br>
+                            ${data.error}
+                        </span>
+                    `;
+                }
+            })
+            .catch(error => {
+                outputDiv.innerHTML = `
+                    <span class="text-danger">
+                        <strong>Error:</strong><br>
+                        Failed to connect to server. Please try again.
+                    </span>
+                `;
+            });
+        }
+    </script>
+</body>
+</html> 

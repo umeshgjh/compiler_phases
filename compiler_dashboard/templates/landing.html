@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compiler Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Compiler Dashboard</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Lexical Analysis</h3>
+                        <p class="card-text">Analyze source code and generate tokens with detailed information about each token's type, value, and position.</p>
+                        <a href="/lexical" class="btn btn-primary">Go to Lexical Analysis</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Three Address Code</h3>
+                        <p class="card-text">Generate three address code, quadruples, triples, and indirect triples from your source code.</p>
+                        <a href="/three-address" class="btn btn-primary">Go to Three Address Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Syntax Tree Generation</h3>
+                        <p class="card-text">Generate and visualize the syntax tree for your code.</p>
+                        <a href="/syntax-tree" class="btn btn-primary">Go to Syntax Tree</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Infix/Postfix Conversion</h3>
+                        <p class="card-text">Convert between infix and postfix expressions.</p>
+                        <a href="/infix-postfix" class="btn btn-primary">Go to Infix/Postfix</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Code Optimization</h3>
+                        <p class="card-text">Optimize your three-address code using standard compiler optimization techniques.</p>
+                        <a href="/code-optimization" class="btn btn-primary">Go to Code Optimization</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Machine Code</h3>
+                        <p class="card-text">Generate machine code from three-address code.</p>
+                        <a href="/machine-code" class="btn btn-primary">Go to Machine Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center mt-5 mb-3 text-muted" style="font-size:1.1rem;">
+        &copy; Copyright by UMESH GJH
+    </footer>
+</body>
+</html> 
